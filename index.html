@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Juniper &amp; Bean Cafe — thoughtfully brewed coffee, fresh pastries, and a cozy place to stay awhile.">
+	<title>Juniper &amp; Bean Cafe</title>
+	<style>
+		:root { --ink:#26352b; --muted:#687267; --cream:#faf7ef; --paper:#fffdf8; --green:#355643; --rust:#bd6848; --line:#e8e2d5; }
+		* { box-sizing:border-box; }
+		html { scroll-behavior:smooth; }
+		body { margin:0; color:var(--ink); background:var(--paper); font-family:"Trebuchet MS",Arial,sans-serif; line-height:1.6; }
+		a { color:inherit; text-decoration:none; }
+		.wrap { width:min(1120px,calc(100% - 48px)); margin:0 auto; }
+		header { position:absolute; z-index:2; top:0; left:0; width:100%; color:white; }
+		.nav { min-height:88px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+		.brand { font-family:Georgia,serif; font-size:1.35rem; font-weight:bold; }
+		.brand span { color:#e9b18a; }
+		.nav-links { display:flex; align-items:center; gap:32px; font-size:.9rem; }
+		.nav-links a:hover { color:#f0c39f; }
+		.nav-cta { border:1px solid rgba(255,255,255,.7); border-radius:30px; padding:10px 18px; }
+		.hero { min-height:680px; display:grid; align-items:center; color:white; background:linear-gradient(90deg,rgba(24,38,29,.82),rgba(24,38,29,.24)),radial-gradient(ellipse at 75% 45%,#a87956 0,#71553f 32%,#3b4939 72%); }
+		.hero-content { max-width:650px; padding:145px 0 90px; }
+		.eyebrow { color:#bd6848; text-transform:uppercase; letter-spacing:.18em; font-size:.75rem; font-weight:bold; }
+		.hero .eyebrow, .contact .eyebrow { color:#efbd98; }
+		h1,h2,h3,p { margin-top:0; }
+		h1 { max-width:620px; margin:16px 0; font:500 clamp(3rem,7vw,5.7rem)/.98 Georgia,serif; letter-spacing:-.045em; }
+		.hero p { max-width:490px; color:#f1eee5; font-size:1.08rem; margin-bottom:30px; }
+		.button { display:inline-block; border-radius:30px; padding:13px 23px; background:var(--rust); color:white; font-weight:bold; transition:background .2s,transform .2s; }
+		.button:hover { background:#a75438; transform:translateY(-2px); }
+		section { padding:88px 0; }
+		.intro { background:var(--cream); text-align:center; }
+		.intro h2,.section-heading { font:500 clamp(2.2rem,4vw,3.2rem)/1.1 Georgia,serif; letter-spacing:-.03em; }
+		.intro p { max-width:650px; margin:0 auto; color:var(--muted); }
+		.menu-section { background:var(--paper); }
+		.section-top { display:flex; align-items:end; justify-content:space-between; gap:25px; margin-bottom:35px; }
+		.section-top p { max-width:400px; margin-bottom:6px; color:var(--muted); }
+		.menu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+		.menu-card { padding:27px; background:var(--cream); border:1px solid var(--line); border-radius:14px; }
+		.menu-card .icon { font-size:1.7rem; margin-bottom:10px; }
+		.menu-card h3 { margin-bottom:7px; font:500 1.35rem Georgia,serif; }
+		.menu-card p { color:var(--muted); font-size:.94rem; margin-bottom:14px; }
+		.price { color:var(--rust); font-weight:bold; }
+		.about { background:#e9eee5; }
+		.about-grid { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:64px; }
+		.about-art { min-height:340px; border-radius:18px; display:grid; place-items:center; background:radial-gradient(circle at 50% 45%,#d8b48e 0 18%,transparent 19%),linear-gradient(145deg,#7d8c70,#354c3c); color:white; font:4.5rem Georgia,serif; }
+		.about-copy p { color:var(--muted); }
+		.about-copy .section-heading { margin-bottom:18px; }
+		.contact { background:var(--green); color:white; }
+		.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+		.contact .section-heading { margin-bottom:15px; }
+		.contact-intro { color:#dce5d8; max-width:450px; }
+		.details { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:30px; }
+		.details h3 { margin-bottom:5px; color:#efbd98; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; }
+		.details p { margin-bottom:0; color:#f2f1e9; }
+		.contact-card { align-self:center; padding:30px; border:1px solid rgba(255,255,255,.24); border-radius:16px; background:rgba(255,255,255,.06); }
+		.contact-card h3 { font:500 1.6rem Georgia,serif; }
+		.contact-card p { color:#dce5d8; margin-bottom:8px; }
+		.contact-card a { color:white; text-decoration:underline; text-underline-offset:3px; }
+		footer { background:#26382d; color:#dce5d8; padding:22px 0; font-size:.85rem; }
+		.footer-inner { display:flex; justify-content:space-between; gap:16px; }
+		@media(max-width:720px) {
+			.wrap { width:min(100% - 36px,560px); }
+			.nav { min-height:76px; }
+			.nav-links { gap:16px; font-size:.82rem; }
+			.nav-links a:not(.nav-cta) { display:none; }
+			.hero { min-height:600px; }
+			section { padding:66px 0; }
+			.section-top { display:block; }
+			.menu-grid { grid-template-columns:1fr; }
+			.about-grid,.contact-grid { grid-template-columns:1fr; gap:30px; }
+			.about-art { min-height:250px; }
+		}
+		@media(max-width:420px) {
+			.details { grid-template-columns:1fr; gap:18px; }
+			.footer-inner { flex-direction:column; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="nav wrap" aria-label="Main navigation">
+			<a class="brand" href="#home">Juniper <span>&amp;</span> Bean</a>
+			<div class="nav-links"><a href="#menu">Menu</a><a href="#story">Our story</a><a class="nav-cta" href="#visit">Visit us</a></div>
+		</nav>
+	</header>
+	<main>
+		<section class="hero" id="home">
+			<div class="wrap hero-content">
+				<div class="eyebrow">Good coffee, good company</div>
+				<h1>Your neighborhood, a little more cozy.</h1>
+				<p>Thoughtfully brewed coffee, oven-warm pastries, and a welcoming seat waiting just for you.</p>
+				<a class="button" href="#menu">Explore our menu</a>
+			</div>
+		</section>
+		<section class="intro"><div class="wrap">
+			<div class="eyebrow">A slower kind of morning</div>
+			<h2>Made with care. Served with a smile.</h2>
+			<p>We believe the best days begin with something simple: a really good cup, a freshly baked treat, and a place where everyone feels at home.</p>
+		</div></section>
+		<section class="menu-section" id="menu"><div class="wrap">
+			<div class="section-top"><div><div class="eyebrow">From our counter</div><h2 class="section-heading">A few house favorites</h2></div><p>Made fresh daily and crafted with ingredients we feel good about.</p></div>
+			<div class="menu-grid">
+				<article class="menu-card"><div class="icon" aria-hidden="true">☕</div><h3>Juniper latte</h3><p>Double espresso, silky steamed milk, and a hint of vanilla.</p><span class="price">$4.75</span></article>
+				<article class="menu-card"><div class="icon" aria-hidden="true">🥐</div><h3>Butter croissant</h3><p>Flaky, golden layers baked fresh each morning.</p><span class="price">$3.50</span></article>
+				<article class="menu-card"><div class="icon" aria-hidden="true">🍯</div><h3>Honey oat cappuccino</h3><p>Rich espresso with oat milk and a touch of local honey.</p><span class="price">$5.25</span></article>
+			</div>
+		</div></section>
+		<section class="about" id="story"><div class="wrap about-grid">
+			<div class="about-art" role="img" aria-label="A warm coffee-inspired illustration">J + B</div>
+			<div class="about-copy"><div class="eyebrow">Rooted in the neighborhood</div><h2 class="section-heading">A little corner worth coming back to.</h2><p>Juniper &amp; Bean started with a simple idea: make an everyday coffee break feel a bit more special. We partner with thoughtful roasters, bake in small batches, and save you a seat.</p><a class="button" href="#visit">Come say hello</a></div>
+		</div></section>
+		<section class="contact" id="visit"><div class="wrap contact-grid">
+			<div><div class="eyebrow">Your table is waiting</div><h2 class="section-heading">Come on in.</h2><p class="contact-intro">Drop by for your morning cup or stay a while. We’d love to see you.</p>
+				<div class="details"><div><h3>Find us</h3><p>123 Maple Street<br>Portland, OR 97205</p></div><div><h3>Hours</h3><p>Mon–Fri: 7am–5pm<br>Sat–Sun: 8am–4pm</p></div></div>
+			</div>
+			<div class="contact-card"><h3>Questions or just saying hi?</h3><p>Call us at <a href="tel:+15035550148">(503) 555-0148</a></p><p>Email <a href="mailto:hello@juniperbean.example">hello@juniperbean.example</a></p><p>Sample contact details — update with your cafe’s real information.</p></div>
+		</div></section>
+	</main>
+	<footer><div class="wrap footer-inner"><span>© 2025 Juniper &amp; Bean Cafe</span><span>Made for good mornings.</span></div></footer>
+</body>
+</html>
